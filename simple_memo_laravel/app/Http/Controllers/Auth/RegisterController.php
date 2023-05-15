@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserCreateRequest;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -43,7 +44,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function register(Request $request)
+    public function register(UserCreateRequest $request)
     {
         User::create([
             'name' => $request->name,

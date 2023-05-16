@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemoController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +22,6 @@ Route::post('/user/register',[RegisterController::class, 'register'])->name('use
 Route::group(['middleware' => ['auth']],function(){
     Route::get('/memo',[MemoController::class, 'index'])->name('memo.index');
     Route::get('/memo/add',[MemoController::class, 'add'])->name('memo.add');
+    Route::get('/memo/select',[MemoController::class, 'select'])->name('memo.select');
 });
 Auth::routes();

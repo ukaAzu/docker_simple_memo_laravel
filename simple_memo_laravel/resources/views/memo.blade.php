@@ -6,7 +6,7 @@
         <div class="col-3 h-100 m-0 p-0 border-left border-right border-gray">
             <div class="left-memo-menu d-flex justify-content-between pt-2">
                 <div class="pl-3 pt-2">
-                    xxxさん、こんにちは。
+                    {{ $name }}さん、こんにちは。
                 </div>
                 <div class="pr-1">
                     <a href="{{ route('memo.add') }}" class="btn btn-success"><i class="fas fa-plus"></i></a>
@@ -17,15 +17,26 @@
                 メモリスト
             </div>
             <div class="left-memo-list list-group-flush p-0">
+                @if($memos->count() === 0)
+                <div class="pl-3 pt-3 h5 text-info text-content">
+                    <i class="far fa-surprise"></i>メモがありません。
+                </div>
+                @endif
+                @foreach($memos as $memo)
                 <a href="" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">タイトル</h5>
-                        <small>2020/08/01 12:00</small>
+                        <h5 class="mb-1">{{ $memo->title }}</h5>
+                        <small>{{ date('Y/m/d H:i',strtotime($memo->updated_at)) }}</small>
                     </div>
                     <p class="mb-1">
-                        詳細内容XXXXXXXXXXX
+                        @if (mb_strlen($memo->content) <= 100)
+                            {{ $memo->content }}
+                        @else
+                            {{ mb_substr($memo->content,0,100)."..." }}
+                        @endif
                     </p>
                 </a>
+                @endforeach
             </div>
         </div>
         <div class="col-9 h-100">

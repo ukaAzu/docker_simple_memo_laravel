@@ -30,6 +30,14 @@ class MemoController extends Controller
         return redirect()->route('memo.index');
     }
 
+    public function delete(Request $request)
+    {
+        Memo::find($request->edit_id)->delete();
+        session()->remove('select_memo');
+
+        return redirect()->route('memo.index');
+    }
+
     public function update(Request $request)
     {
         $memo = Memo::find($request->edit_id);

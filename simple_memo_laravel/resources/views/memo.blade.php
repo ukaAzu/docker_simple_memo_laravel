@@ -9,7 +9,7 @@
                     xxxさん、こんにちは。
                 </div>
                 <div class="pr-1">
-                    <a href="" class="btn btn-success"><i class="fas fa-plus"></i></a>
+                    <a href="{{ route('memo.add') }}" class="btn btn-success"><i class="fas fa-plus"></i></a>
                     <a href="{{ route('login.index') }}" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
